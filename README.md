@@ -12,4 +12,4 @@ Disse må installeres for å få kjørt Node-RED flowene:
 ## Database
 
 Databasen (smartby.sql) kan importeres inn i MariaDB.
-![alt text](doc/db/er_diagram.png)
+![alt text](doc/db/er_diagram.PNG)
