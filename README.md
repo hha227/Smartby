@@ -9,6 +9,9 @@ Disse må installeres for å få kjørt Node-RED flowene:
 
 * Worldmap
 * Dashboard
+* UI-tables
+* Mysql
+* Geonames
 
 ## Database
 ### ER-diagram
