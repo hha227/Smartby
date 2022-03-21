@@ -26,12 +26,12 @@ CREATE TABLE `transactions` (
   `TransactionID` int(11) NOT NULL AUTO_INCREMENT,
   `UserName` char(20) CHARACTER SET utf8mb4 DEFAULT NULL,
   `Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `TransactionIn` int(11) DEFAULT NULL,
-  `TransactionOut` int(11) DEFAULT NULL,
+  `Transaction` int(11) DEFAULT NULL,
+  `Message` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`TransactionID`),
   KEY `UserName` (`UserName`),
   CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`UserName`) REFERENCES `users` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1159 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `transactions` (
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
 INSERT INTO `transactions` VALUES
-(18,'haavagh','2022-02-17 13:14:03',1000,0);
+(1158,'Arnie','2022-03-21 14:47:07',10000,NULL);
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -73,9 +73,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER update_balances
-after insert on transactions for each row
-UPDATE users SET balance=(SELECT SUM(TransactionIN) FROM transactions WHERE users.UserName = transactions.UserName GROUP BY UserName) - (SELECT SUM(TransactionOut) FROM transactions WHERE users.UserName = transactions.UserName GROUP BY UserName) */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER update_balances after insert on transactions for each row UPDATE users SET balance=(SELECT SUM(Transaction) FROM transactions WHERE users.UserName = transactions.UserName GROUP BY UserName) */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -105,7 +103,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-('haavagh','Håvard Grimsbo Hanssen',1000,'192933');
+('Arnie','Arne Midjo',10000,'991231244');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -118,4 +116,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-17 14:36:10
+-- Dump completed on 2022-03-21 15:52:35
